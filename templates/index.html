@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Low Poly Image Converter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Low Poly Image Converter</h1>
+        <form id="uploadForm">
+            <div class="form-group">
+                <label for="upload" class="form-label">Upload an Image</label>
+                <input type="file" id="upload" accept="image/*" class="input-file" required />
+            </div>
+
+            <!-- 将 edge_detector, sample, render 横向排列 -->
+            <div class="form-row">
+                <div class="form-group-horizontal">
+                    <label for="edge-detector" class="form-label">Edge Detector:</label>
+                    <select id="edge-detector" class="input-select">
+                        <option value="sobel">Sobel</option>
+                        <option value="canny">Canny</option>
+                    </select>
+                </div>
+
+                <div class="form-group-horizontal">
+                    <label for="sampling" class="form-label">Sampler:</label>
+                    <select id="sampling" class="input-select">
+                        <option value="Poisson_Disk">Poisson Disk</option>
+                        <option value="Threshold">Threshold</option>
+                    </select>
+                </div>
+
+                <div class="form-group-horizontal">
+                    <label for="render" class="form-label">Renderer:</label>
+                    <select id="render" class="input-select">
+                        <option value="Centroid">Centroid</option>
+                        <option value="Mean">Mean</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="n-samples" class="form-label">Number of Samples:</label>
+                <input type="range" id="n-samples" min="1000" max="5000" value="100" class="input-range">
+                <span id="sampleValue">100</span>
+            </div>
+
+            <button type="submit" class="btn">Convert</button>
+        </form>
+
+        <div class="image-container">
+            <div>
+                <h2>Preview</h2>
+                <img id="preview" alt="Uploaded Image" class="image">
+            </div>
+            <div>
+                <h2>Result</h2>
+                <img id="result" alt="Converted Low-Poly Image" class="image">
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
