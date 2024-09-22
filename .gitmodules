@@ -1,0 +1,3 @@
+[submodule "triangler"]
+	path = triangler
+	url = https://github.com/tdh8316/triangler.git
